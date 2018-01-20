@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
   post '/signup' => 'users#create'
-  get  '/courses' => 'courses#index'
+  resources :courses
   root 'homes#index'
   
 end

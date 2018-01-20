@@ -13,6 +13,8 @@ class CourseDashboard < Administrate::BaseDashboard
     course_code: Field::String,
     uni_name: Field::String,
     program_name: Field::String,
+    description: Field::String,
+    url: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -28,6 +30,8 @@ class CourseDashboard < Administrate::BaseDashboard
     :course_code,
     :uni_name,
     :program_name,
+    :description,
+    :url,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -38,6 +42,8 @@ class CourseDashboard < Administrate::BaseDashboard
     :course_code,
     :uni_name,
     :program_name,
+    :description,
+    :url,
     :created_at,
     :updated_at,
   ].freeze
@@ -50,6 +56,8 @@ class CourseDashboard < Administrate::BaseDashboard
     :course_code,
     :uni_name,
     :program_name,
+    :description,
+    :url,
   ].freeze
 
   # Overwrite this method to customize how courses are displayed

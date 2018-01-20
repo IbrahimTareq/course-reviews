@@ -10,13 +10,13 @@ body{
     margin-top: 10%;
 }
 
+.course-box{
+    margin-bottom: 50px;
+}
+
 .course-box p{
     display: inline-block;
     font-family: 'Lato', sans-serif;
-}
-
-.course-box-container{
-    padding-bottom: 50px;
 }
 
 .course-box img {
@@ -30,4 +30,17 @@ body{
 
 .program-name, .course-code, .uni-name{
     color: grey;
+}
+
+.cover{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/cover.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 270px;
+    width: 100%;
 }

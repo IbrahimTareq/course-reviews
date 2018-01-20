@@ -1,0 +1,23 @@
+<style>
+    body{
+        background-color: #e9ecef;
+    }
+    
+    .jumbotron{
+        background-color: #e8e8e8;   
+    }
+</style>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="cover"></div>
+        <h1 class="display-3"><%= @course.name %></h1>
+        <p class="lead"><%= @course.course_code %> - <%= @course.program_name %> - <%= @course.uni_name %></p>
+        <hr class="my-4">
+        <p><%= @course.description %></p>
+        <p class="lead">
+            <%= link_to "Learn more", @course.url, :target => "_blank", :class => "btn btn-outline-info btn-lg" %>
+        </p>
+    </div>
+</div>
+
