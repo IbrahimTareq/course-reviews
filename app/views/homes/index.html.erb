@@ -1,3 +1,22 @@
+<style>
+    body{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/bg.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    
+    .navbar {
+        background-color: transparent;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+</style>
+
 <div class="container welcome-container">
 
     <div class="row">
@@ -6,22 +25,22 @@
             <p class="welcome-message">Course Reviews.</p>
         </div>
       <div class="col-5">
-          <form class="form-signin">
+          <%= form_tag(signup_path, {class: 'form-signup'}) do %>
             <div class="form-group">
-                <label for="inputEmail">Username</label>
-                <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                <%= label_tag :name %> 
+                <%= text_field_tag :name, "", class: "form-control", placeholder: "Username", autofocus: "true" %>
             </div>
             <div class="form-group">
-                <label for="inputEmail">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                <%= label_tag :email %>
+                <%= email_field_tag :email, "", class: "form-control", placeholder: "Email" %>
             </div>
             <div class="form-group">
-                <label for="inputPassword">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <small id="emailHelp" class="form-text text-white">Use at least one letter, one numeral, and seven characters.</small>
+                <%= label_tag :password %>
+                <%= password_field_tag :password, "", class: "form-control", placeholder: "Password" %>
+                <small id="passwordHelp" class="form-text text-white">Use at least one letter, one numeral, and seven characters.</small>
             </div>
-            <button class="btn btn-lg btn-success btn-block" type="submit">Signup</button>
-          </form>
+            <%= submit_tag "Signup", class: "btn btn-lg btn-block submit-button" %>
+          <% end %>
       </div>
     </div>
 

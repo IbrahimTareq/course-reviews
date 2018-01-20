@@ -6,9 +6,25 @@
   </head>
   
   <body>
+    <% flash.each do |name, msg| %>
+      <div class='flash-message alert alert-<%= name %>'>
+        <%= msg %>
+      </div>
+    <% end %>
+    
     <%= render 'layouts/partials/header' %>
       <%= yield %>
       <%= render 'layouts/partials/footer' %>
   </body>
+  
+  <script>
+    $(document).ready(function(){
+        setTimeout(function(){
+            $(".flash-message").fadeOut("slow", function() {
+                $(this).remove();
+            })
+        }, 4500);
+    })
+  </script>
 </html>
 

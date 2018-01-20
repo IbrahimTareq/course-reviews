@@ -1,0 +1,33 @@
+body{
+    background-color: rgb(232,232,232);
+}
+
+.navbar{
+    background-color: #563d7c;
+}
+
+.courses-container{
+    margin-top: 10%;
+}
+
+.course-box p{
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+}
+
+.course-box-container{
+    padding-bottom: 50px;
+}
+
+.course-box img {
+    width: 100%;
+    height: auto;
+}
+
+.course-name{
+    font-size: 1.1em;
+}
+
+.program-name, .course-code, .uni-name{
+    color: grey;
+}
