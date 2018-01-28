@@ -6,6 +6,10 @@
     .jumbotron{
         background-color: #e8e8e8;   
     }
+    
+    .br-theme-fontawesome-stars .br-widget a{
+        font-size: 40px;
+    }
 </style>
 
 <div class="jumbotron">
@@ -14,10 +18,87 @@
         <h1 class="display-3"><%= @course.name %></h1>
         <p class="lead"><%= @course.course_code %> - <%= @course.program_name %> - <%= @course.uni_name %></p>
         <hr class="my-4">
-        <p><%= @course.description %></p>
-        <p class="lead">
-            <%= link_to "Learn more", @course.url, :target => "_blank", :class => "btn btn-outline-info btn-lg" %>
-        </p>
+        <p class="description"><%= @course.description %></p>
+        <div class="lead">
+            <%= link_to "Learn more", @course.url, :target => "_blank", :class => "btn btn-lg learnmore-button" %>
+            <button class="btn btn-lg average-button"><%= @average %><span>/5</span></button>
+            <p class="average-count"><%= @total_count %> reviews</p>
+        </div>
     </div>
 </div>
 
+<div class="container write-review-container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="reviewer-logo">
+                <img src="/review.svg">
+            </div>
+            <button class="bttn-unite bttn-lg bttn-warning" data-toggle="modal" data-target="#exampleModal">Leave Review</button>
+        </div>
+    </div>
+</div>
+
+<% @reviews.each do |review| %>
+    <div class="container review-container">
+        <div class="row">
+            <div class="col-1">
+                <div class="user-logo float-right">
+                    <img src="/user.svg">
+                    <p><%= review.user.name %></p>
+                </div>
+            </div>
+            <div class="col-11 review-content">
+                <blockquote><%= review.content %></blockquote>
+                <div class="ratings-container">
+                    <%= select_tag(:rating, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ], review.rating), {:class => 'ratings-posted'}) %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <% if !logged_in? %>
+        <h5 class="modal-title">You must be logged in to leave a review</h5>
+        <% else %>
+        <h5 class="modal-title">Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag(review_path) do %>
+          <div class="form-group">
+            <%= hidden_field_tag 'course', @course.id %>
+            <label for="recipient-name" class="form-control-label">Comment:</label>
+            <%= text_area_tag(:content, "", class: "form-control", placeholder: "Help other students by sharing your review\nTip: A great review covers quality of course content, perspicuously of lecturer/tutors & overall course satisfaction. Remember, your review needs to be atleast 100 characters long!", size: "24x4") %>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Rating:</label>
+            <%= select_tag(:rating, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ]), {:class => 'ratings'}) %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= submit_tag "Post", class: "btn btn-success" %>
+      </div>
+        <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+   $(function() {
+      $('.ratings').barrating({
+        theme: 'fontawesome-stars'
+      });
+      $('.ratings-posted').barrating({ 
+          theme: 'fontawesome-stars',
+          readonly: true 
+      });
+   });
+</script>
